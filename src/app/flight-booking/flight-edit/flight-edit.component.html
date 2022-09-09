@@ -1,0 +1,54 @@
+<h1>Flight Edit</h1>
+
+<p>
+  Id: {{id}}
+</p>
+<p>
+  ShowDetail: {{id}}
+</p>
+
+<pre>{{ flight | json }}</pre>
+
+<div *ngIf="!flightForm.valid">
+  Validierungsfehler!
+</div>
+
+<div *ngIf="flightForm.controls.from.hasError('required')">
+  required!
+</div>
+
+<div *ngIf="flightForm.controls.from.hasError('minLength')">
+  minLength!
+</div>
+
+<div>
+  {{flightForm.controls.from.errors | json}}
+</div>
+
+<form [formGroup]="flightForm">
+  <input formControlName="id">
+  <input formControlName="from">
+  <input formControlName="to">
+  <!-- <input formControlName="date" appDate> -->
+  <app-date formControlName="date"></app-date>
+  {{flight?.date}}
+
+  <input formControlName="delayed" type="checkbox">
+
+  <div formGroupName="details">
+    <input formControlName="direct">
+    <div *ngIf="flightForm.controls.details.controls.direct.touched">**</div>
+    <input formControlName="seatsCount">
+  </div>
+
+  <button (click)="save()">Save</button>
+
+</form>
+
+<div *ngIf="showWarning" class="message warning-message">
+  You did not save your state. Do you really want to leave me?
+
+  <button (click)="decide(true)">Yes</button>
+  <button (click)="decide(false)">No</button>
+
+</div>

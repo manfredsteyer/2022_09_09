@@ -1,0 +1,22 @@
+<div class="tabbed-pane">
+
+    <span *ngFor="let tab of tabList">
+        <a class="tab-link" (click)="activate(tab)">{{tab.title}}</a>
+    </span>
+
+    <ng-content></ng-content>
+
+    <app-tab-pager #pager>
+    </app-tab-pager>
+
+    <hr>
+    <h3>Page Remote Control</h3>
+    PageCount: {{ pager.pageCount }}<br>
+    PageCount: {{ pager.currentPage }}<br>
+    <button (click)="pager.next()" #myButton>Next</button>
+    <!-- {{myButton.innerText}} -->
+
+    <!-- <input #myInput>
+    <button (click)="search(myInput.value)"></button> -->
+
+</div>

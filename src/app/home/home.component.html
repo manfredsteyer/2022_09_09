@@ -1,0 +1,105 @@
+<!-- src/app/home/home.component.html -->
+<h1>Welcome {{userName}}</h1>
+
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>
+
+<app-data-table [data]="flights">
+    <div *appTableField="let data as 'id'">{{data}}</div>
+    <div *appTableField="let data as 'from'">{{data}}</div>
+    <div *appTableField="let data as 'to'">{{data}}</div>
+    <div *appTableField="let data as 'date'">{{data | date:'dd.MM.yyyy HH:mm'}}</div>
+
+    <ng-template appTableField let-data [appTableFieldAs]="'id'">
+        <div>{{data}}</div>
+    </ng-template>
+
+</app-data-table>
+
+
+
+<button (appClickWithWarning)="deleteAll()">Delete all!</button>
+
+<app-tabbed-pane>
+
+    <!-- <app-bad></app-bad> -->
+
+    <app-tab title="Aktuelle Flüge" #tab>
+
+        <table>
+            <tr>
+                <td>17</td>
+                <td>Graz</td>
+                <td>München</td>
+                <td>jetzt</td>
+
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>München</td>
+                <td>Berlin</td>
+                <td>danach</td>
+
+            </tr>
+
+        </table>
+
+    </app-tab>
+
+    <app-tab title="Verspätete Flüge" #tab>
+
+        <table>
+            <tr>
+                <td>17</td>
+                <td>A</td>
+                <td>B</td>
+                <td>jetzt</td>
+
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>B</td>
+                <td>C</td>
+                <td>danach</td>
+
+            </tr>
+
+        </table>
+
+    </app-tab>
+
+    <app-tab title="Durchgeführte Flüge" #tab>
+
+        <table>
+            <tr>
+                <td>17</td>
+                <td>Graz</td>
+                <td>München</td>
+                <td>jetzt</td>
+
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>München</td>
+                <td>Berlin</td>
+                <td>danach</td>
+
+            </tr>
+
+        </table>
+
+    </app-tab>
+
+</app-tabbed-pane>
+
+Placeholder:
+<ng-container #placeholder></ng-container>
+
+<input [appToolTip]="myTmpl">
+
+<ng-template #myTmpl let-title let-link="helpLink">
+    <h2>{{title}}</h2>
+    <p>Takes your input!</p>
+    <hr>
+    <a [href]="link">More</a>
+</ng-template>
